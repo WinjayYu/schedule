@@ -20,13 +20,16 @@ def monitor_ip():
     if not old_ip:
         old_ip = get_old_ip();
     res = requests.get("https://api.ipify.org?format=json")
-    ip_json = json.loads(res.text)
-    logger.log(ip_json["ip"])
-    current_ip = ip_json["ip"]
-    if old_ip != current_ip:
-        old_ip = current_ip
-        notify(token, "ipHasChanged", current_ip)
-        set_ip(current_ip)    
+    try:
+        ip_json = json.loads(res.text)
+        logger.log(ip_json["ip"])
+        current_ip = ip_json["ip"]
+        if old_ip != current_ip:
+            old_ip = current_ip
+            notify(token, "ipHasChanged", current_ip)
+            set_ip(current_ip)    
+    except: 
+        print("parse json error")
 
 def get_old_ip():
     with open("ip.txt", "r") as f:
