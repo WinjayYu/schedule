@@ -9,7 +9,7 @@ list=$(echo $tracklist | sed -e "s/ /,/g")
 echo $list
 if [ -z $list ]; then
     echo "please ping github.com"
-    exit 1
+    exit 0
 fi
 sed -i '$ d' /root/.aria2/aria2.conf
 echo bt-tracker=$list >> /root/.aria2/aria2.conf

@@ -4,7 +4,7 @@ import json
 import time
 import os
 import sys
-from tools import notify
+from tools import notify, get_current_path
 import logger
 # about monitor ip
 old_ip = ""
@@ -32,15 +32,15 @@ def monitor_ip():
         print("parse json error")
 
 def get_old_ip():
-    with open("ip.txt", "r") as f:
+    with open(get_current_path("./ip.txt"), "r") as f:
         return f.read()
 
 def set_ip(ip):
-    f = open("ip.txt", "w")
+    f = open(get_current_path("./ip.txt"), "w")
     f.write(ip)
     f.close()
 # end monitor ip
 
 # start tracklist
 def track_list():
-    os.system("bash trackerslist.sh") 
+    os.system("bash ./trackerslist.sh") 

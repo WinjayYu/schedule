@@ -1,5 +1,6 @@
 from datetime import datetime
 import requests
+import os
 def current_time():
     return datetime.today().strftime('%Y%m%d %H:%M:%S')
 
@@ -18,3 +19,5 @@ def notify(token, text="Hi", desp="winjay"):
         f.close()
 
 
+def get_current_path(rel_file):
+   return os.path.join(os.path.dirname(__file__), rel_file) 
