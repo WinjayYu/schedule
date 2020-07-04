@@ -1,4 +1,6 @@
-from tools import current_time
+from tools import current_time, notify
+import jobs
+
 
 def writeFile(filepath, message):
     try:
@@ -10,6 +12,8 @@ def writeFile(filepath, message):
 
 def error(errorMessage):
     writeFile("./error.txt", errorMessage)
+    notify(jobs.token, "error", str(errorMessage))
+
 
 def log(message):
     writeFile("./logs.txt", message)
